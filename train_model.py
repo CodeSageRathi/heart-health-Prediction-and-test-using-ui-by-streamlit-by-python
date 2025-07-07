@@ -24,29 +24,20 @@ from imblearn.over_sampling import SMOTE
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-# Create sample dataset
-def generate_sample_data():
-    data = {
-        'age': [29, 35, 45, 54, 63, 58, 41, 50, 47, 34],
-        'sex': [1, 0, 1, 0, 1, 1, 0, 1, 0, 1],
-        'cp': [0, 1, 2, 1, 3, 2, 1, 2, 1, 0],
-        'trestbps': [120, 130, 140, 135, 150, 145, 128, 138, 132, 126],
-        'chol': [200, 250, 240, 230, 300, 280, 260, 270, 245, 210],
-        'fbs': [0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
-        'restecg': [0, 1, 1, 0, 2, 1, 0, 1, 0, 1],
-        'thalach': [170, 160, 150, 140, 130, 135, 155, 145, 160, 175],
-        'exang': [0, 1, 1, 0, 1, 0, 0, 1, 1, 0],
-        'oldpeak': [0.0, 2.3, 1.4, 1.5, 3.2, 0.8, 1.0, 2.0, 1.8, 0.2],
-        'slope': [1, 2, 2, 1, 3, 2, 1, 2, 2, 1],
-        'ca': [0, 1, 2, 1, 3, 0, 1, 2, 1, 0],
-        'thal': [1, 2, 3, 2, 3, 2, 2, 3, 3, 1],
-        'target': [0, 1, 1, 0, 1, 0, 0, 1, 1, 0]
-    }
-    return pd.DataFrame(data)
+# Load dataset from CSV
+def load_heart_data(file_path="heart1.csv"):
+    try:
+        df = pd.read_csv(file_path)
+        logging.info(f"Loaded dataset from {file_path} with shape {df.shape}")
+        return df
+    except FileNotFoundError:
+        raise FileNotFoundError(f"❌ File {file_path} not found. Please ensure the file exists in the correct directory.")
+    except Exception as e:
+        raise Exception(f"❌ Error loading {file_path}: {str(e)}")
 
 # Load and preprocess
 def load_and_preprocess():
-    df = generate_sample_data()
+    df = load_heart_data()
 
     if df.isnull().sum().sum() > 0:
         raise ValueError("❌ Dataset contains missing values.")
