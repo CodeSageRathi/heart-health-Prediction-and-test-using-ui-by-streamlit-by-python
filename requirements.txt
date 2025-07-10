@@ -1,0 +1,47 @@
+python -m venv venv
+source venv/bin/activate   
+
+
+
+pip needed 
+pandas
+numpy
+seaborn
+matplotlib
+scikit-learn
+xgboost
+imblearn
+joblib
+streamlit
+
+
+pip install pandas numpy seaborn matplotlib scikit-learn xgboost imbalanced-learn joblib streamlit
+
+
+
+data requirements 
+
+['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg',
+ 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal', 'target']
+
+
+A. Train the model: python train_model.py
+   Outputs:
+
+    heart_disease_model.pkl
+
+    scaler.pkl
+
+    feature_importance.png
+
+B. Launch the Streamlit app: streamlit run app.py
+   
+
+Final Checklist Before Deployment
+    Model trained and saved (heart_disease_model.pkl)
+    Scaler saved (scaler.pkl)
+    All scripts debugged and modular
+    Streamlit app UI clean and functional
+    heart1.csv present and correct
+    requirements.txt created
+    pages/health.py in correct place
